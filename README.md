@@ -11,7 +11,7 @@ To change from current server to a different server:
 sudo ./toggleWG.sh new-configfile.conf
 ````
 
-The above assumes you installed wireguard on your edgerouter and placed your VPN configureation files, newWG.sh and toggleWG.sh scripts on your router. These scripts will write LastCon and LastSo files. LastCon stores the in-use configuration name and LastSo stores the source IP forwarded to the tunnel.
+The above assumes you installed wireguard on your edgerouter and placed your VPN configureation files, newWG.sh and toggleWG.sh scripts on your router. These scripts will write LastCon and LastSo files. LastCon stores the in-use configuration name and LastSo stores the source IP forwarded to the tunnel. **It is also assumed that you use port 51820 for wireguard. Edit newWG.sh and change the listen-port if this is not the case.**  
 
 Device IP associated with the tunnel can be changed in configure mode using
 ````bash
