@@ -5,7 +5,6 @@ if [ -z ${1+x} ] ; then echo "configure file is unset"; else
 if [ -z ${2+x} ] ; then echo "source IP is unset"; else    
 
 
-    exit 1
 source=`echo $2`
 name=`echo wg0`
 echo $1 > LastCon
