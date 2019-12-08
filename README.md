@@ -22,3 +22,5 @@ set firewall modify SOURCE_ROUTE rule 10 source address NEWIP
 Outside configure mode you should also update the contents of LastSo, created by NewWG.sh.
 
 The scripts expect configurations in the format used by Mullvad, so a fake Mullvad configuration is included here should you need to build such a file.
+
+**It is possible to use a NAT address group rather than a single source IP by editing newWG.sh. All IP in the group are then routed to wireguard interface. I notice, though, that I sometimes have to reboot the router after running newWG.sh when I use NAT group as the source. So, you may want to reboot if the wg0 interface seems inactive after running newWG.sh.**
