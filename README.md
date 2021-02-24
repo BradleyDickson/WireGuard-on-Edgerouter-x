@@ -1,6 +1,23 @@
 # WireGuard-on-Edgerouter-x
 These scripts combine things from NordVPN instructions and from various posts by Lochnair to quickly establish a working WireGuard interface on your Edgerouter. The idea is to configure WireGuard and use the policy based routing to direct traffic from a single IP on your network through the tunnel.
 
+## WireGuard for single or multiple IPs
+
+Where IP1 IP2, etc, are your local IP addresses and mullvad.conf is your wireguard conf file:
+````bash
+sudo ./fullsetWG.sh IP1 IP2 mullvad.conf
+````
+This will work for how ever many IP addresses you route through your WG interface. The WG intergace is named wg0 and the IP are blocked in a NAT group called wgClients.
+
+Change WG configurations with
+````bash
+./refreshWG.sh mullvad.conf
+````
+where mullvad.conf is a new conf file.
+
+
+## Single IP scripts
+
 To setup WireGuard using mullvad-fakeexample.conf configuration for device IP 192.168.1.32:
 ````bash
 sudo ./newWG.sh mullvad-fakeexample.conf 192.168.1.32
