@@ -1,6 +1,8 @@
 # WireGuard-on-Edgerouter-x
 These scripts combine things from NordVPN instructions and from various posts by Lochnair to quickly establish a working WireGuard interface on your Edgerouter. The idea is to configure WireGuard and use the policy based routing to direct traffic from a single IP on your network through the tunnel.
 
+I use debain package for wireguard from https://github.com/Lochnair/vyatta-wireguard/releases
+
 ## WireGuard for single or multiple IPs
 
 Where IP1 IP2, etc, are your local IP addresses and mullvad.conf is your wireguard conf file:
