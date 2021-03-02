@@ -10,6 +10,10 @@ pri=`grep Pri $1 |awk '{print $3}'`
 end=`grep Endp $1 |awk '{print $3}'`
 prt=`echo $end | sed -e 's/:/ /g' |awk '{print $2}'`
 out=`echo $add |sed -e 's/\// /g' |awk '{print $1}'`
+ispre=`grep -i Preshar $1 |wc |awk '{print $2}'`
+if [ $ispre -gt 0 ] ; then
+pre=`grep -i Preshar $1 |awk '{print $3}'`
+fi
 
 cmd=/opt/vyatta/bin/vyatta-op-cmd-wrapper
 cfg=/opt/vyatta/sbin/vyatta-cfg-cmd-wrapper
@@ -24,6 +28,9 @@ $cfg set interfaces wireguard $name route-allowed-ips false
 $cfg set interfaces wireguard $name peer $pub endpoint $end
 $cfg set interfaces wireguard $name peer $pub allowed-ips 0.0.0.0/0
 $cfg set interfaces wireguard $name private-key $pri
+if [ $ispre -gt 0 ] ; then
+    $cfg set interfaces wireguard $name peer $pub preshared-key $pre
+fi
 
 $cfg commit
 $cfg set service nat rule 5000 description 'wireguard'

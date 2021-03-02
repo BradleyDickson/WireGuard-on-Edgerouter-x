@@ -16,6 +16,10 @@ pub=`grep Pub ${arg[$((narg-1))]} |awk '{print $3}'`
 pri=`grep Pri ${arg[$((narg-1))]} |awk '{print $3}'`
 end=`grep Endp ${arg[$((narg-1))]} |awk '{print $3}'`
 out=`echo $add |sed -e 's/\// /g' |awk '{print $1}'`
+ispre=`grep -i Preshar ${arg[$((narg-1))]} |wc |awk '{print $2}'`
+if [ $ispre -gt 0 ] ; then
+pre=`grep -i Preshar ${arg[$((narg-1))]} |awk '{print $3}'`
+fi
 echo $add
 echo $pub                                
 echo $pri                                  
@@ -49,7 +53,9 @@ $cfg set interfaces wireguard $name route-allowed-ips false
 $cfg set interfaces wireguard $name peer $pub endpoint $end
 $cfg set interfaces wireguard $name peer $pub allowed-ips 0.0.0.0/0
 $cfg set interfaces wireguard $name private-key $pri
-
+if [ $ispre -gt 0 ] ; then
+    $cfg set interfaces wireguard $name peer $pub preshared-key $pre
+fi
 $cfg commit
 $cfg set service nat rule 5000 description 'wireguard'
 $cfg set service nat rule 5000 log disable
