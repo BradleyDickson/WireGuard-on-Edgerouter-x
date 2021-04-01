@@ -23,7 +23,7 @@ The entire WG can be removed with
 ````
 This configuration is assuming that the only explicit dns declaration is specified by the wireguard configuration for the wireguard interface.
 
-## Single IP scripts
+## Single IP scripts - old/outdated
 
 To setup WireGuard using mullvad-fakeexample.conf configuration for device IP 192.168.1.32:
 ````bash
