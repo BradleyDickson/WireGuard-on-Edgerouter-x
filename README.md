@@ -17,6 +17,11 @@ Change WG configurations with
 ````
 where mullvad.conf is a new conf file.
 
+The entire WG can be removed with
+````bash
+./closeWG.sh
+````
+This configuration is assuming that the only explicit dns declaration is specified by the wireguard configuration for the wireguard interface.
 
 ## Single IP scripts
 

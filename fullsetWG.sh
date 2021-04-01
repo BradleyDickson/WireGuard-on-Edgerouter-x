@@ -16,6 +16,7 @@ pub=`grep Pub ${arg[$((narg-1))]} |awk '{print $3}'`
 pri=`grep Pri ${arg[$((narg-1))]} |awk '{print $3}'`
 end=`grep Endp ${arg[$((narg-1))]} |awk '{print $3}'`
 out=`echo $add |sed -e 's/\// /g' |awk '{print $1}'`
+dnss=`grep DNS ${arg[$((narg-1))]} |awk '{print $3}'`
 ispre=`grep -i Preshar ${arg[$((narg-1))]} |wc |awk '{print $2}'`
 if [ $ispre -gt 0 ] ; then
 pre=`grep -i Preshar ${arg[$((narg-1))]} |awk '{print $3}'`
@@ -40,8 +41,8 @@ $cfg commit
 $cfg save 
 $cfg end
 
-echo ' sleeping 15 to settle wgClients...'
-sleep 15
+echo ' sleeping 1 to settle wgClients...'
+sleep 1
 echo 'moving on'
 
 cmd=/opt/vyatta/bin/vyatta-op-cmd-wrapper                                 
@@ -69,7 +70,7 @@ $cfg set firewall modify SOURCE_ROUTE rule 10 description 'to WG'
 $cfg set firewall modify SOURCE_ROUTE rule 10 source group address-group wgClients
 $cfg set firewall modify SOURCE_ROUTE rule 10 modify table 1
 $cfg set interfaces switch switch0 firewall in modify SOURCE_ROUTE
-$cfg set service dns forwarding name-server 8.8.8.8
+$cfg set service dns forwarding name-server $dnss
 
 $cfg commit
 $cfg save 
