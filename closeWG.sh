@@ -9,6 +9,7 @@ $cfg delete service nat rule 5000
 $cfg delete protocols static table 1
 $cfg delete firewall modify SOURCE_ROUTE rule 10 
 $cfg delete firewall group address-group wgClients
+$cfg delete interfaces switch switch0 firewall in modify SOURCE_ROUTE
 $cfg delete service dns forwarding name-server 
 
 $cfg commit
